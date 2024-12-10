@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var activities = Activities()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(activities.activities) { activity in
+                    HStack {
+                        Text(activity.name)
+                        Text("Active streak: \(activity.streak)")
+                    }
+                }
+                .onDelete(perform: delete)
+            }
+            .navigationTitle("Habits")
+            .toolbar {
+                NavigationLink("Add Activity", destination: AddActivityView(activities: activities))
+            }
         }
-        .padding()
+    }
+    
+    
+    func delete(at offsets: IndexSet) {
+        activities.activities.remove(atOffsets: offsets)
     }
 }
 
