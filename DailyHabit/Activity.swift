@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct Activity: Identifiable, Codable {
+struct Activity: Identifiable, Codable, Hashable, Equatable {
     var id = UUID()
     let name: String
-    let streak: Int
+    let description: String
+    var streak: Int
 }
 
 @Observable

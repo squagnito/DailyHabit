@@ -30,8 +30,13 @@ struct AddActivityView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        let activity = Activity(name: activityName, streak: streakLength)
+                        let activity = Activity(name: activityName, description: activityDescription, streak: streakLength)
                         activities.activities.append(activity)
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
                         dismiss()
                     }
                 }
