@@ -38,5 +38,11 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(activity: Activity(name: "Run one mile", description: "Sample description", streak: 6), activities: Activities())
+    DetailView(activity: Activity(name: "Run one mile",
+                                  description: "Sample description",
+                                  streak: 6,
+                                  frequency: "Daily",
+                                  icon: "figure.walk",
+                                  codableColor: CodableColor(color: .blue)),
+               activities: Activities())
 }

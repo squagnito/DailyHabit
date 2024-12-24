@@ -45,15 +45,12 @@ struct ContentView: View {
                         ForEach(activities.activities) { activity in
                             NavigationLink(destination: DetailView(activity: activity, activities: activities)) {
                                 HStack(spacing: 16) {
-                                    Circle()
-                                        .fill(streakColor(for: activity.streak))
+                                    Image(systemName: activity.icon)
+                                        .font(.title)
+                                        .foregroundStyle(activity.color)
                                         .frame(width: 40, height: 40)
-                                        .overlay {
-                                            Text("\(activity.streak)")
-                                                .font(.caption)
-                                                .fontWeight(.bold)
-                                                .foregroundColor(.white)
-                                        }
+                                        .background(activity.color.opacity(0.2))
+                                        .clipShape(Circle())
                                     
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(activity.name)
@@ -66,9 +63,15 @@ struct ContentView: View {
                                     
                                     Spacer()
                                     
-                                    Image(systemName: "chevron.right")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
+                                    Circle()
+                                        .fill(streakColor(for: activity.streak))
+                                        .frame(width: 40, height: 40)
+                                        .overlay {
+                                            Text("\(activity.streak)")
+                                                .font(.caption)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(.white)
+                                        }
                                 }
                                 .padding(.vertical, 8)
                             }
